@@ -1,6 +1,12 @@
 /* --------------------------------------------------
-   INTRO VIDEO LOADER (WITH SOUND - FIXED)
+   FORCE ENABLE SCROLLING ON PAGE LOAD
 -------------------------------------------------- */
+window.addEventListener('DOMContentLoaded', () => {
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    console.log('Scroll enabled on page load');
+});
+
 /* --------------------------------------------------
    MOBILE MENU TOGGLE
 -------------------------------------------------- */
@@ -11,9 +17,9 @@ const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
 // Toggle mobile menu
 if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', () => {
-        mobileMenuToggle.classList.toggle('active');
+        const isActive = mobileMenuToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+        document.body.style.overflow = isActive ? 'hidden' : 'auto';
     });
 }
 
@@ -28,7 +34,7 @@ mobileMenuLinks.forEach(link => {
 
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (mobileMenu.classList.contains('active') && 
+    if (mobileMenu && mobileMenu.classList.contains('active') && 
         !mobileMenu.contains(e.target) && 
         !mobileMenuToggle.contains(e.target)) {
         mobileMenuToggle.classList.remove('active');
@@ -67,7 +73,6 @@ if (aboutVideo && aboutVideoCard) {
     });
 }
 
-
 /* --------------------------------------------------
    AUDIO UNLOCK FOR OTHER VIDEOS
 -------------------------------------------------- */
@@ -75,8 +80,7 @@ let audioUnlocked = false;
 
 document.addEventListener("click", () => {
     audioUnlocked = true;
-    console.log("Audio unlocked for rest of site");
-});
+}, { once: true }); // Only run once
 
 /* --------------------------------------------------
    HOVER VIDEO PLAY FOR RECENT EDITS (WITH SOUND)
@@ -190,15 +194,17 @@ if (heroTitle) {
 -------------------------------------------------- */
 const parallaxLayers = document.querySelectorAll(".parallax-layer");
 
-document.addEventListener("mousemove", e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+if (parallaxLayers.length > 0) {
+    document.addEventListener("mousemove", e => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-    parallaxLayers.forEach(layer => {
-        const depth = layer.getAttribute("data-depth");
-        const moveX = x * depth * 20;
-        const moveY = y * depth * 20;
+        parallaxLayers.forEach(layer => {
+            const depth = layer.getAttribute("data-depth");
+            const moveX = x * depth * 20;
+            const moveY = y * depth * 20;
 
-        layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+            layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+        });
     });
-});
+}
