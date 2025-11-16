@@ -1,95 +1,47 @@
 /* --------------------------------------------------
-   INTRO VIDEO LOADER (WITH SOUND - FIXED)
+   FORCE ENABLE SCROLLING ON PAGE LOAD
 -------------------------------------------------- */
-const introVideo = document.getElementById("intro-video");
-const introLoader = document.getElementById("intro-loader");
-const mainContent = document.getElementById("main-content");
-const skipBtn = document.getElementById("skip-intro");
-const playOverlay = document.getElementById("play-overlay");
-const playBtn = document.querySelector(".play-btn");
+window.addEventListener('DOMContentLoaded', () => {
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    console.log('Scroll enabled on page load');
+});
 
-if (playBtn) {
-  playBtn.addEventListener("click", () => {
-    playOverlay.style.display = "none";
-    playIntroVideo();
-  });
-}
+/* --------------------------------------------------
+   MOBILE MENU TOGGLE
+-------------------------------------------------- */
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
 
-// Force hide scroll during intro
-document.body.style.overflow = "hidden";
-
-// Track if intro has ended
-let introEnded = false;
-
-// Function to end intro
-function endIntro() {
-  if (introEnded) return; // Prevent multiple calls
-  introEnded = true;
-  
-  introLoader.style.opacity = "0";
-  introLoader.style.transition = "0.8s ease";
-
-  setTimeout(() => {
-    introLoader.style.display = "none";
-    mainContent.classList.remove("hidden");
-    mainContent.classList.add("fade-in");
-    
-    // Enable scrolling
-    document.body.style.overflow = "auto";
-  }, 800);
-}
-
-// Try to play video with sound
-function playIntroVideo() {
-  introVideo.muted = false; // Try unmuted first
-  introVideo.volume = 0.8;
-  
-  introVideo.play().then(() => {
-    console.log("Video playing with sound");
-  }).catch(err => {
-    console.log("Unmuted play failed, trying muted:", err);
-    // If unmuted fails, play muted
-    introVideo.muted = true;
-    introVideo.play().catch(err2 => {
-      console.error("Video play failed:", err2);
-      // If all fails, end intro after 1 second
-      setTimeout(endIntro, 1000);
+// Toggle mobile menu
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        const isActive = mobileMenuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = isActive ? 'hidden' : 'auto';
     });
-  });
 }
 
-// Start playing when video is ready
-introVideo.addEventListener("loadeddata", () => {
-  console.log("Video loaded, duration:", introVideo.duration);
-  playIntroVideo();
+// Close menu when clicking a link
+mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
 });
 
-// Try to play immediately if already loaded
-if (introVideo.readyState >= 3) {
-  playIntroVideo();
-}
-
-// End intro when video finishes
-introVideo.addEventListener("ended", () => {
-  console.log("Video ended");
-  endIntro();
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (mobileMenu && mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && 
+        !mobileMenuToggle.contains(e.target)) {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 });
-
-// Skip button
-if (skipBtn) {
-  skipBtn.addEventListener("click", () => {
-    console.log("Skip clicked");
-    endIntro();
-  });
-}
-
-// Safety fallback: Force end after 8 seconds
-setTimeout(() => {
-  if (!introEnded) {
-    console.warn("Video timeout - forcing end");
-    endIntro();
-  }
-}, 8000);
 
 /* --------------------------------------------------
    ABOUT VIDEO CARD - HOVER TO PLAY
@@ -121,7 +73,6 @@ if (aboutVideo && aboutVideoCard) {
     });
 }
 
-
 /* --------------------------------------------------
    AUDIO UNLOCK FOR OTHER VIDEOS
 -------------------------------------------------- */
@@ -129,8 +80,7 @@ let audioUnlocked = false;
 
 document.addEventListener("click", () => {
     audioUnlocked = true;
-    console.log("Audio unlocked for rest of site");
-});
+}, { once: true }); // Only run once
 
 /* --------------------------------------------------
    HOVER VIDEO PLAY FOR RECENT EDITS (WITH SOUND)
@@ -244,15 +194,17 @@ if (heroTitle) {
 -------------------------------------------------- */
 const parallaxLayers = document.querySelectorAll(".parallax-layer");
 
-document.addEventListener("mousemove", e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+if (parallaxLayers.length > 0) {
+    document.addEventListener("mousemove", e => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-    parallaxLayers.forEach(layer => {
-        const depth = layer.getAttribute("data-depth");
-        const moveX = x * depth * 20;
-        const moveY = y * depth * 20;
+        parallaxLayers.forEach(layer => {
+            const depth = layer.getAttribute("data-depth");
+            const moveX = x * depth * 20;
+            const moveY = y * depth * 20;
 
-        layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+            layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`;
+        });
     });
-});
+}
