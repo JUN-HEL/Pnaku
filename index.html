@@ -6,74 +6,75 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pankaj — Cinematic Video Editor</title>
 
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="Professional video editor specializing in cinematic reels, short-form content, and viral edits. Transform your raw footage into captivating content.">
-  <meta name="keywords"
-    content="video editor, cinematic editing, Instagram reels, YouTube shorts, video editing portfolio">
-  <meta name="author" content="Pankaj (@wassup_panku)">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Pankaj — Cinematic Video Editor">
-  <meta property="og:description" content="Transform raw footage into viral content with professional video editing">
-  <meta property="og:type" content="website">
-
-  <!-- Favicon (add your logo) -->
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Pacifico&display=swap"
-    rel="stylesheet">
-
-  <!-- Stylesheet -->
+  <!-- Stylesheet (created earlier) -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Add click-to-start overlay -->
 
+
+  <!-- NAVBAR -->
   <!-- NAVBAR -->
   <nav role="navigation" aria-label="Main navigation">
     <div class="nav-left">
       <a href="#" class="brand">Pankaj (@wassup_panku)</a>
     </div>
+
     <div class="nav-center">
       <a href="#about">About</a>
       <a href="#projects">Work</a>
       <a href="#contact">Contact</a>
     </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <!-- Cursor glow -->
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+
+  <!-- custom cursor glow (JS positions this element too, included as fallback) -->
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <!-- HERO SECTION -->
   <section class="hero">
-    <!-- Floating glow effects -->
-    <div class="glow glow1"></div>
-    <div class="glow glow2"></div>
 
-    <h1 class="script-title">Pankaj's</h1>
+    <h1 class="script-title">Pankaj'S</h1>
+
     <h1 class="main-title">PORTFOLIO</h1>
+
     <h2 class="subtitle">Unleash Your Viral Potential With Pro Video Editing</h2>
 
     <p class="desc">
       I transform raw footage into captivating content that gets seen, shared, and loved.
-      Take your channel to the next level with expert editing magic.
+      Take your channel to the next level with our expert editing magic.
     </p>
 
-    <a href="#contact" class="cta-btn">GET IN TOUCH</a>
+    <a href="#contact" class="cta-btn">CONTACT</a>
+
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT -->
   <section id="about" class="about reveal">
     <h2>About Me</h2>
 
     <div class="about-content">
 
-      <!-- About Intro Video Card -->
+      <!-- About Intro Video Card (Instagram Reel Style) -->
       <div class="about-video-card">
-        <video class="about-video" src="assets/AboutMEPnak.mp4" muted loop playsinline></video>
+        <video class="about-video" src="assets/PankuVID.mp4" muted loop playsinline></video>
         <div class="video-overlay">
           <div class="play-icon">▶</div>
         </div>
@@ -106,64 +107,53 @@
     </div>
   </section>
 
-  <!-- RECENT EDITS SECTION -->
+
   <section id="projects" class="recent-edits-section">
 
     <h2 class="recent-title">My Recent <span>Edits</span></h2>
 
     <p class="recent-subtext">
-      From cinematic storytelling to viral-ready shorts — each project is crafted with precision,
-      creativity, and attention to detail. Hover to preview.
+      We imagine and build experiences, products and businesses that disrupt the status quo,
+      win hearts and realize the future. Explore how we work.
     </p>
 
     <div class="recent-grid">
 
       <div class="recent-item">
         <video src="assets/PankuVID.mp4" muted loop playsinline></video>
-        <div class="video-info">
-          <h3>Cinematic Reel</h3>
-          <p>Color Grading • Transitions</p>
-        </div>
       </div>
 
       <div class="recent-item">
         <video src="assets/AboutMEPnak.mp4" muted loop playsinline></video>
-        <div class="video-info">
-          <h3>Personal Brand</h3>
-          <p>Motion Graphics • Sound Design</p>
-        </div>
       </div>
 
       <div class="recent-item">
         <video src="assets/client.mp4" muted loop playsinline></video>
-        <div class="video-info">
-          <h3>Client Project</h3>
-          <p>Storytelling • Visual Effects</p>
-        </div>
       </div>
 
     </div>
 
   </section>
 
-  <!-- FEATURED REELS SLIDER -->
-  <section class="reel-section reveal" aria-label="Featured reels slider">
-    <h3>Featured Reels</h3>
+  <!-- REEL SLIDER -->
+  <section class="reel-section reveal" aria-label="Reel slider">
+    <h3 style="text-align:center; color:#ffd966; margin-bottom:16px;">Featured Reels</h3>
 
     <div class="slider" role="list">
-      <video src="assets/PankuVID.mp4" muted playsinline loop preload="metadata" role="listitem"
-        aria-label="Featured reel 1"></video>
-      <video src="assets/AboutMEPnak.mp4" muted playsinline loop preload="metadata" role="listitem"
-        aria-label="Featured reel 2"></video>
-      <video src="assets/client.mp4" muted playsinline loop preload="metadata" role="listitem"
-        aria-label="Featured reel 3"></video>
-      <video src="assets/pri.mp4" muted playsinline loop preload="metadata" role="listitem"
-        aria-label="Featured reel 4"></video>
+
+      <video src="assets/PankuVID.mp4" playsinline loop preload="metadata" role="listitem" aria-label="Reel 1"></video>
+
+      <video src="assets/AboutMEPnak.mp4" playsinline loop preload="metadata" role="listitem"
+        aria-label="Reel 2"></video>
+
+      <video src="assets/client.mp4" playsinline loop preload="metadata" role="listitem" aria-label="Reel 3"></video>
+
+      <video src="assets/pri.mp4" playsinline loop preload="metadata" role="listitem" aria-label="Reel 4"></video>
+
     </div>
   </section>
-
   <!-- CONTACT / FOOTER -->
-  <footer id="contact" class="contact">
+  <footer id="contact" class="contact ">
     <div class="contact-container">
       <h3>Let's Create Something Cinematic</h3>
       <p class="contact-desc">
@@ -173,8 +163,7 @@
 
       <!-- Social Links -->
       <div class="social-links">
-        <a href="https://www.instagram.com/wssup_panku/" target="_blank" rel="noopener noreferrer"
-          class="social-btn instagram" aria-label="Visit Instagram">
+        <a href="https://www.instagram.com/wssup_panku/" target="_blank" class="social-btn instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -182,7 +171,7 @@
           Instagram
         </a>
 
-        <a href="mailto:panki23@gmail.com" class="social-btn gmail" aria-label="Send email">
+        <a href="mailto:panki23@gmail.com" class="social-btn gmail">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -205,9 +194,9 @@
     </div>
   </footer>
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
 
+  <!-- Main script (created earlier as script.js) -->
+  <script src="script.js" defer></script>
 </body>
 
 </html>
